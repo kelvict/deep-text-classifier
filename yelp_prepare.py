@@ -71,9 +71,13 @@ def make_data(split_points=(0.8, 0.94)):
   train_f = open(trainset_fn, 'wb')
   dev_f = open(devset_fn, 'wb')
   test_f = open(testset_fn, 'wb')
-
   try:
+    cnt = 0
+    print "Start to handle review"
     for review in tqdm(read_reviews()):
+      cnt = cnt + 1
+      if cnt%1000==0:
+        print "Handling review %d"%cnt
       x = []
       for sent in en(review['text']).sents:
         x.append([vocab.get(tok.orth_, UNKNOWN) for tok in sent])
@@ -88,7 +92,7 @@ def make_data(split_points=(0.8, 0.94)):
         f = test_f
       pickle.dump((x, y), f)
   except KeyboardInterrupt:
-    pass
+    print "KeyboardInterrupt"
 
   train_f.close()
   dev_f.close()

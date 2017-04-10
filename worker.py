@@ -92,7 +92,7 @@ def HAN_model_1(session, restore_only=False):
     print("Reading model parameters from %s" % checkpoint.model_checkpoint_path)
     saver.restore(session, checkpoint.model_checkpoint_path)
   elif restore_only:
-    raise FileNotFoundError("Cannot restore model")
+    raise IOError("Cannot restore model")
   else:
     print("Created model with fresh parameters")
     session.run(tf.global_variables_initializer())
@@ -169,7 +169,6 @@ def train():
 
     for i, (x, y) in enumerate(batch_iterator(task.read_trainset(epochs=3), args.batch_size, 300)):
       fd = model.get_feed_data(x, y, class_weights=class_weights)
-
       # import IPython
       # IPython.embed()
 

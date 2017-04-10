@@ -7,7 +7,7 @@ import tensorflow as tf
 try:
   from tensorflow.contrib.rnn import RNNCell
 except ImportError:
-  RNNCell = tf.nn.rnn_cell.RNNCel
+  RNNCell = tf.nn.rnn_cell.RNNCell
 
 
 class LSTMCell(RNNCell):
