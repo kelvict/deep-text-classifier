@@ -36,6 +36,8 @@ checkpoint_dir = os.path.join(task.train_dir, 'checkpoint')
 tflog_dir = os.path.join(task.train_dir, 'tflog')
 checkpoint_name = task_name + '-model'
 checkpoint_dir = os.path.join(task.train_dir, 'checkpoints')
+if not os.path.exists(checkpoint_dir):
+  os.makedirs(checkpoint_dir)
 checkpoint_path = os.path.join(checkpoint_dir, checkpoint_name)
 
 # @TODO: move calculation into `task file`
