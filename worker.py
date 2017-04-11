@@ -199,6 +199,7 @@ def train():
         print('dev accuracy: %.2f' % (dev_df['predictions'] == dev_df['labels']).mean())
 
 def main():
+  print "Get in Main"
   if args.mode == 'train':
     train()
   elif args.mode == 'eval':
