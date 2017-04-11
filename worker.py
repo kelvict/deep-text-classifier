@@ -11,6 +11,10 @@ parser.add_argument("--max-grad-norm", type=float, default=5.0)
 parser.add_argument("--lr", type=float, default=0.001)
 args = parser.parse_args()
 
+if "gpu" in args.device:
+  os.environ['CUDA_VISIBLE_DEVICES'] = args.device.split(':')[-1]
+  print "CUDA_VISIBLE_DEVICES=%s"%os.environ['CUDA_VISIBLE_DEVICES']
+
 import importlib
 import os
 import pickle
