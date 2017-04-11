@@ -145,6 +145,7 @@ def evaluate(dataset):
 
 
 def train():
+  print "Get in train"
   tf.reset_default_graph()
 
   config = tf.ConfigProto(allow_soft_placement=True)
