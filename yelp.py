@@ -24,7 +24,7 @@ def _read_dataset(fn, review_max_sentences=30, sentence_max_length=30, epochs=1)
     c += 1
     if epochs > 0 and c > epochs:
       return
-    print('epoch %s' % c)
+    print('read dataset for epoch %s' % c)
     with open(fn, 'rb') as f:
       try:
         while 1:
