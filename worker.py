@@ -129,7 +129,7 @@ def ev(session, model, dataset):
   predictions = []
   labels = []
   examples = []
-  for x, y in tqdm(batch_iterator(dataset, args.batch_size, 1)):
+  for x, y in batch_iterator(dataset, args.batch_size, 1):
     examples.extend(x)
     labels.extend(y)
     predictions.extend(session.run(model.prediction, model.get_feed_data(x, is_training=False)))
