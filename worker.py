@@ -39,12 +39,15 @@ checkpoint_dir = os.path.join(task.train_dir, 'checkpoints')
 checkpoint_path = os.path.join(checkpoint_dir, checkpoint_name)
 
 # @TODO: move calculation into `task file`
+print "Start to Read TrainSet"
 trainset = task.read_trainset(epochs=1)
 class_weights = pd.Series(Counter([l for _, l in trainset]))
 class_weights = 1/(class_weights/class_weights.mean())
 class_weights = class_weights.to_dict()
 
+print "Start to Read Vocab"
 vocab = task.read_vocab()
+print "Start to Read Labels"
 labels = task.read_labels()
 
 classes = max(labels.values())+1
