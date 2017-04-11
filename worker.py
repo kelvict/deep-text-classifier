@@ -96,7 +96,7 @@ def HAN_model_1(session, restore_only=False):
   else:
     print("Created model with fresh parameters")
     session.run(tf.global_variables_initializer())
-  # tf.get_default_graph().finalize()
+    # tf.get_default_graph().finalize()
   return model, saver
 
 model_fn = HAN_model_1
@@ -166,12 +166,13 @@ def train():
     # print(embedding.tensor_name)
 
     # Saves a configuration file that TensorBoard will read during startup.
-
-    for i, (x, y) in enumerate(batch_iterator(task.read_trainset(epochs=3), args.batch_size, 300)):
+    print "Start to train in loop"
+    for i, (x, y) in tqdm(enumerate(batch_iterator(task.read_trainset(epochs=3), args.batch_size, 300))):
       fd = model.get_feed_data(x, y, class_weights=class_weights)
       # import IPython
       # IPython.embed()
-
+      if i%1000==0:
+        print "train %d"%i
       t0 = time.clock()
       step, summaries, loss, accuracy, _ = s.run([
           model.global_step,
