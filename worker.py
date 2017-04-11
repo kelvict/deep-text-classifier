@@ -171,7 +171,7 @@ def train():
 
     # Saves a configuration file that TensorBoard will read during startup.
     print "Start to train in loop"
-    for i, (x, y) in tqdm(enumerate(batch_iterator(task.read_trainset(epochs=3), args.batch_size, 300))):
+    for i, (x, y) in (enumerate(batch_iterator(task.read_trainset(epochs=3), args.batch_size, 300))):
       fd = model.get_feed_data(x, y, class_weights=class_weights)
       # import IPython
       # IPython.embed()
